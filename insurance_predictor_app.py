@@ -1,7 +1,10 @@
 import streamlit as st
+import pickle
+import pandas as pd
+import numpy as np
 
 # Main header
-st.header('Insurance Cost Predictor')
+st.header('Insurance Cost Predictor', divider='grey')
 
 # User's personal details
 st.subheader("Personal Information")
@@ -45,3 +48,30 @@ st.write("- Any Transplants:", "Yes" if transplants else "No")
 st.write("- Chronic Diseases:", "Yes" if chronic_diseases else "No")
 st.write("- Family History of Cancer:", "Yes" if cancer_history else "No")
 st.write("- Number of Major Surgeries:", surgeries)
+
+
+# Converting categorical inputs to numeric format as per model's requirement
+data = {
+    'Age': age,
+    'Height': height,
+    'Weight': weight,
+    'Diabetes': int(diabetes),
+    'BloodPressureProblems': int(blood_pressure),
+    'AnyTransplants': int(transplants),
+    'AnyChronicDiseases': int(chronic_diseases),
+    'KnownAllergies': int(allergies),
+    'HistoryOfCancerInFamily': int(cancer_history),
+    'NumberOfMajorSurgeries': int(surgeries) if surgeries != "3+" else 3  # Convert 3+ to 3
+}
+
+# Create a DataFrame for prediction
+input_data = pd.DataFrame([data])
+
+# Load the ML model
+with open("model.pkl", "rb") as file:
+    model = pickle.load(file)
+
+# Predict the insurance premium
+if st.button("Predict Insurance Premium"):
+    prediction = model.predict(input_data)[0]  # Get the first value in case the output is an array
+    st.write(f"Predicted Insurance Premium: ${prediction:.2f}")
