@@ -2,6 +2,8 @@ import streamlit as st
 import pickle
 import pandas as pd
 import numpy as np
+from sklearn.preprocessing import StandardScaler
+
 
 # Main header
 st.header('Insurance Cost Predictor', divider='grey')
@@ -67,11 +69,23 @@ data = {
 # Create a DataFrame for prediction
 input_data = pd.DataFrame([data])
 
+
+# Load scaler
+with open("scaler.pkl", "rb") as file:
+    scaler = pickle.load(file)
+
 # Load the ML model
-with open("model.pkl", "rb") as file:
+with open("model_rfr.pkl", "rb") as file:
     model = pickle.load(file)
+
+
+# Scale input data
+input_data_scaled = scaler.transform(input_data)
+input_data_scaled = pd.DataFrame(scaler.transform(input_data), columns=input_data.columns)
+
+st.write(input_data_scaled)
 
 # Predict the insurance premium
 if st.button("Predict Insurance Premium"):
-    prediction = model.predict(input_data)[0]  # Get the first value in case the output is an array
-    st.write(f"Predicted Insurance Premium: ${prediction:.2f}")
+    prediction = model.predict(input_data_scaled)[0]  # Get the first value as the output is an array
+    st.write(f"Predicted Insurance Premium: ₹{prediction:.2f}")
