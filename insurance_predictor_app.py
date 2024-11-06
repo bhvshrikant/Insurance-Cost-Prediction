@@ -53,12 +53,12 @@ st.write("- Number of Major Surgeries:", surgeries)
 # Converting categorical inputs to numeric format as per model's requirement
 data = {
     'Age': age,
-    'Height': height,
-    'Weight': weight,
     'Diabetes': int(diabetes),
     'BloodPressureProblems': int(blood_pressure),
     'AnyTransplants': int(transplants),
     'AnyChronicDiseases': int(chronic_diseases),
+    'Height': height,
+    'Weight': weight,
     'KnownAllergies': int(allergies),
     'HistoryOfCancerInFamily': int(cancer_history),
     'NumberOfMajorSurgeries': int(surgeries) if surgeries != "3+" else 3  # Convert 3+ to 3
