@@ -13,15 +13,15 @@ st.subheader("Personal Information")
 col1, col2 = st.columns(2)
 
 with col1:
-    age = st.slider("Age", 0, 130, 25)
+    age = st.slider("Age", 10, 120, 30)
 
 with col2:
-    height = st.slider("Height (cm)", 0, 300, 165)
+    height = st.slider("Height (cm)", 100, 250, 165)
 
 col1, col2 = st.columns(2)
 
 with col1:
-    weight = st.slider("Weight (kg)", 0, 200, 65)
+    weight = st.slider("Weight (kg)", 30, 150, 65)
 
 # Health-related toggles in a two-column layout
 st.subheader("Health Information")
@@ -83,7 +83,7 @@ with open("model_rfr.pkl", "rb") as file:
 input_data_scaled = scaler.transform(input_data)
 input_data_scaled = pd.DataFrame(scaler.transform(input_data), columns=input_data.columns)
 
-st.write(input_data_scaled)
+# st.write(input_data_scaled)
 
 # Predict the insurance premium
 if st.button("Predict Insurance Premium"):
