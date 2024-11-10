@@ -1,0 +1,3 @@
+insurance_predictor_app.py  # only insurance_price_prediction.py is needed
+model.pkl                   # only model_rfr.pkl is likely needed
+.twb

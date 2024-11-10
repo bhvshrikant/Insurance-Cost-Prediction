@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Cost Predictor</title>
+</head>
+<body>
+    <h1>Insurance Cost Predictor</h1>
+    <form action="/predict" method="POST">
+        <label for="Age">Age:</label>
+        <input type="number" id="age" name="Age" min="0" max="130" required><br><br>
+
+        <label for="Height">Height (cm):</label>
+        <input type="number" id="height" name="Height" min="0" max="300" required><br><br>
+
+        <label for="Weight">Weight (kg):</label>
+        <input type="number" id="weight" name="Weight" min="0" max="200" required><br><br>
+
+        <label>Diabetes:</label>
+        <input type="checkbox" name="Diabetes" value="1"><br><br>
+
+        <label>Blood Pressure Problems:</label>
+        <input type="checkbox" name="BloodPressureProblems" value="1"><br><br>
+
+        <label>Known Allergies:</label>
+        <input type="checkbox" name="KnownAllergies" value="1"><br><br>
+
+        <label>Any Transplants:</label>
+        <input type="checkbox" name="AnyTransplants" value="1"><br><br>
+
+        <label>Chronic Diseases:</label>
+        <input type="checkbox" name="AnyChronicDiseases" value="1"><br><br>
+
+        <label>Family History of Cancer:</label>
+        <input type="checkbox" name="HistoryOfCancerInFamily" value="1"><br><br>
+
+        <label for="surgeries">Number of Major Surgeries:</label>
+        <select id="surgeries" name="NumberOfMajorSurgeries">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="3+">3+</option>
+        </select><br><br>
+
+        <button type="submit">Predict Premium</button>
+    </form>
+</body>
+</html>
